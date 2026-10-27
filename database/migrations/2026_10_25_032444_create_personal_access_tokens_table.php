@@ -11,6 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //(dari AI) Database cloud dipakai bersama proyek lain, jadi lewati jika tabelnya sudah ada.
+        if (Schema::hasTable('personal_access_tokens')) {
+            return;
+        }
+
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
             $table->morphs('tokenable');
